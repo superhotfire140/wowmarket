@@ -105,3 +105,4 @@ venv.bak/
 
 # secrets
 .secrets.txt
+*.xlsx

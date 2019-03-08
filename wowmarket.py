@@ -1,9 +1,9 @@
 from wowapi import WowApi #https://python-wowapi.readthedocs.io/en/latest/modules/wowapi.html#wowapi.api.WowApi.get_auctions
 import pandas as pd
 import requests
-import numpy
+import openpyxl
 
-api = WowApi('PUBLIC_KEY', 'PRIVATE_KEY')
+api = WowApi('2e5f247983b941ec8cea07f8e6e8802f', 'muq1xUmblMpnjMIZuRts60kmPFKCUObY')
 api.get_token('us', namespace='dynamic-us', locale='en_US')
 foo = api.get_auctions('us', 'zuljin', locale='en_US')
 data = requests.get(foo['files'][0]['url'], 'json')
@@ -14,6 +14,7 @@ df = pd.DataFrame(auctions)
 
 df['owner'].mode()
 
-thaeleeaAuctions = list(filter(lambda auction: auction['owner'] == 'Unhoarie', auctions))
+thaeleeaAuctions = list(filter(lambda auction: auction['owner'] == 'Thaeleea', auctions))
+df2 = pd.DataFrame(thaeleeaAuctions)
 
-sum(map(lambda auction: auction['buyout'], thaeleeaAuctions))/10000
+df.to_excel('auctionhouse.xlsx', sheet_name='MarketInfo')
