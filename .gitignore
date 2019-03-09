@@ -109,3 +109,4 @@ venv.bak/
 #xlsx
 .xlsx
 config.py
+*.xlsx
