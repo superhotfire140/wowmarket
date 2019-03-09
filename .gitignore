@@ -103,6 +103,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# secrets
-.secrets.txt
-*.xlsx
+#config
+config.py
