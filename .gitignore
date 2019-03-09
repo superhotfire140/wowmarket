@@ -7,7 +7,6 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-.Python
 build/
 develop-eggs/
 dist/
@@ -100,8 +99,13 @@ venv.bak/
 # mkdocs documentation
 /site
 
+
 # mypy
 .mypy_cache/
 
-#config
+# secrets
+.secrets.txt
+
+#xlsx
+.xlsx
 config.py
