@@ -11,12 +11,8 @@ data = requests.get(foo['files'][0]['url'], 'json')
 
 auctions = data.json()['auctions']
 
-df = pd.DataFrame(auctions)
-#df['buyouts'].transform(lambda x: x + 1)
+akunda = list(filter(lambda auction: auction['item'] == 152507, auctions))
 
-#thaeleeaAuctions = list(filter(lambda auction: auction['owner'] == 'Thaeleea', auctions))
-
+df = pd.DataFrame(akunda)
 
 df.to_excel('auctionhouse.xlsx', sheet_name='MarketInfo')
-
-id = df['item'].unique()
