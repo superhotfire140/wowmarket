@@ -30,15 +30,13 @@ market_200_df = market_200_df[market_200_df['Price/Unit'] < market_200_avg + 1.5
 market_200_avg = market_200_df['Price/Unit'].mean()
 market_200_std = market_200_df['Price/Unit'].std()
 
-market_df = market_df[market_df['Price/Unit'] < market_200_avg + 2*market_200_std]
-
 market_df['Price/Unit Avg'] = market_200_avg
 market_df['Price/Unit Std'] = market_200_std
 market_df['Std 1'] = market_200_avg - market_200_std
 market_df['Std 2'] = market_200_avg - market_200_std*2
 market_df['%'] = market_df['Price/Unit'] / market_200_avg
 
-#Write to Market Price file
+# Write to Market Price file
 price_upper = market_200_avg + market_200_std*2
 price_lower = market_200_avg - market_200_std*2
 
