@@ -18,23 +18,23 @@ market = list(filter(lambda auction: auction['item'] == int(input_item), auction
 market_df = pd.DataFrame(market)
 market_df['buyout'] = market_df['buyout']/10000
 market_df['Price/Unit'] = market_df['buyout']/market_df['quantity']
-market_200_df = market_df[market_df['quantity'] == 200].copy()
+market_200_df = market_df[market_df['quantity'] == 200]
 
 # Remove Outliers
 market_200_avg = market_200_df['Price/Unit'].mean()
 market_200_std = market_200_df['Price/Unit'].std()
 
-market_200_df = market_200_df[market_200_df['Price/Unit'] < market_200_avg + 1.5*market_200_std]
+market_200_df_norm = market_200_df[market_200_df['Price/Unit'] < market_200_avg + market_200_std]
 
 # Get new avg and std
-market_200_avg = market_200_df['Price/Unit'].mean()
-market_200_std = market_200_df['Price/Unit'].std()
+market_200_avg_norm = market_200_df_norm['Price/Unit'].mean()
+market_200_std_norm = market_200_df_norm['Price/Unit'].std()
 
-market_df['Price/Unit Avg'] = market_200_avg
-market_df['Price/Unit Std'] = market_200_std
-market_df['Std 1'] = market_200_avg - market_200_std
-market_df['Std 2'] = market_200_avg - market_200_std*2
-market_df['%'] = market_df['Price/Unit'] / market_200_avg
+market_df['Price/Unit Avg'] = market_200_avg_norm
+market_df['Price/Unit Std'] = market_200_std_norm
+market_df['Std 1'] = market_200_avg_norm - market_200_std_norm
+market_df['Std 2'] = market_200_avg_norm - market_200_std_norm*2
+market_df['%'] = market_df['Price/Unit'] / market_200_avg_norm
 
 # Write to Market Price file
 price_upper = market_200_avg + market_200_std*2
