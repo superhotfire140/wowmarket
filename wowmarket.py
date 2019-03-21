@@ -24,7 +24,7 @@ market_200_df = market_df[market_df['quantity'] == 200].copy()
 market_200_avg = market_200_df['Price/Unit'].mean()
 market_200_std = market_200_df['Price/Unit'].std()
 
-market_200_df = market_200_df[market_200_df['Price/Unit'] < market_200_avg + 1.5*market_200_std]
+market_200_df = market_200_df[market_200_df['Price/Unit'] < market_200_avg + market_200_std]
 
 # Get new avg and std
 market_200_avg = market_200_df['Price/Unit'].mean()
